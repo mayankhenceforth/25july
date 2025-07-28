@@ -1,4 +1,4 @@
-import { IsEmail, IsNumber, IsOptional,IsString } from "class-validator";
+import { IsEmail, IsNotEmpty, IsNumber, IsOptional,IsString } from "class-validator";
 
 export class UpdateUserDto {
     @IsString()
@@ -12,4 +12,8 @@ export class UpdateUserDto {
     @IsNumber()
     @IsOptional()
     mobileNo :number
+
+    @IsString()
+    @IsOptional()
+    password :string
 }  

@@ -14,6 +14,8 @@ export class User extends Document {
 
   @Prop({ default: Date.now })
   createdAt: Date;
+  @Prop()
+  password:string
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);

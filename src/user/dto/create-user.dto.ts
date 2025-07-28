@@ -11,4 +11,9 @@ export class CreateUserDto {
   @IsNumber()
   @IsNotEmpty()
   mobileNo: number;
+  
+  @IsString()
+  @IsNotEmpty()
+  password:string;
+
 }

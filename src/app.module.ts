@@ -9,6 +9,9 @@ import { AuthModule } from './auth/auth.module';
 import { EmployeeModule } from './employee/employee.module';
 import { authMiddleware } from './middleware/auth.middleware';
 import { METHODS } from 'http';
+import { JwtModule, JwtService } from '@nestjs/jwt';
+import { VideoModule } from './video/video.module';
+
 
 @Module({
   imports: [ConfigModule.forRoot({ isGlobal: true }), // Loads .env
@@ -18,14 +21,15 @@ import { METHODS } from 'http';
       uri: configService.get<string>('DB_URI'),
     }),
     inject: [ConfigService],
-  }), UserModule, AuthModule, EmployeeModule],
+  }), UserModule, AuthModule, EmployeeModule, JwtModule, VideoModule],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [AppService, JwtService],
+  exports: [JwtService]
 })
 export class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {
     consumer
       .apply(authMiddleware)
-      .forRoutes({path:'user' ,method:RequestMethod.GET});
+      .forRoutes({ path: 'user', method: RequestMethod.GET });
   }
 }
