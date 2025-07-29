@@ -12,7 +12,7 @@ import { JwtModule } from '@nestjs/jwt';
     AuthModule,
     JwtModule.registerAsync({
       useFactory: async () => ({
-        secret: 'mysecretkey', // Replace with process.env.JWT_SECRET in production
+        secret: process.env.JWT_SECRET,
         signOptions: { expiresIn: '1d' },
       }),
     }),

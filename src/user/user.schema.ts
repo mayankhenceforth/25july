@@ -12,6 +12,9 @@ export class User extends Document {
   @Prop()
   mobileNo: number;
 
+  @Prop({default:true})
+  isActive:boolean
+
   @Prop({ default: Date.now })
   createdAt: Date;
   @Prop()
